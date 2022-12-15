@@ -25,8 +25,9 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     if (error) {
       console.log(error)
     } else {
+      res.status(200).json({ message: 'OK' })
+
       console.log('Email sent: ' + info.response)
     }
   })
-  res.status(200).json({ message: 'OK' })
 }
