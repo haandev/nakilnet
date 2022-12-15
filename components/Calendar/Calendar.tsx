@@ -1,16 +1,16 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/solid"
-import { useCallback, useEffect, useState } from "react"
-import classNames from "../../utils/classnames"
-import { CalendarProps } from "./types"
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
+import { useCallback, useEffect, useState } from 'react'
+import classNames from '../../utils/classnames'
+import { CalendarProps } from './types'
 
 function getLocalDayNames() {
   let d = new Date(2000, 0, 3) // Monday
-  let days:any = []
+  let days: any = []
   for (let i = 0; i < 7; i++) {
     days.push({
-      long: d.toLocaleString("default", { weekday: "long" }),
-      short: d.toLocaleString("default", { weekday: "short" }),
+      long: d.toLocaleString('default', { weekday: 'long' }),
+      short: d.toLocaleString('default', { weekday: 'short' }),
     })
     d.setDate(d.getDate() + 1)
   }
@@ -20,11 +20,11 @@ const localeDayNames = getLocalDayNames()
 
 function getLocalMonthNames() {
   let d = new Date(2000, 0) // January
-  let months:any = []
+  let months: any = []
   for (let i = 0; i < 12; i++) {
     months.push({
-      long: d.toLocaleString("default", { month: "long" }),
-      short: d.toLocaleString("default", { month: "short" }),
+      long: d.toLocaleString('default', { month: 'long' }),
+      short: d.toLocaleString('default', { month: 'short' }),
     })
     d.setMonth(i + 1)
   }
@@ -81,7 +81,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     //if (diff < 0) diff += 7
     firstDay.setDate(firstDay.getDate() - diff)
 
-    const daysNew = []
+    const daysNew: any = []
     for (let i = 0; i < 42; i++) {
       const iterator = new Date(firstDay.getTime())
       iterator.setDate(iterator.getDate() + i)
@@ -114,19 +114,21 @@ export const Calendar: React.FC<CalendarProps> = ({
       <button
         type="button"
         onClick={handlePrevMonth}
-        className="absolute -top-1 -left-1.5 flex items-center justify-center p-1.5 text-gray-400 hover:text-gray-500">
+        className="absolute -top-1 -left-1.5 flex items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+      >
         <span className="sr-only">Previous month</span>
         <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
       </button>
       <button
         onClick={handleNextMonth}
         type="button"
-        className="absolute -top-1 -right-1.5 flex items-center justify-center p-1.5 text-gray-400 hover:text-gray-500">
+        className="absolute -top-1 -right-1.5 flex items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+      >
         <span className="sr-only">Next month</span>
         <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
       </button>
 
-      <section className={classNames("text-center")}>
+      <section className={classNames('text-center')}>
         <h2 className="font-semibold text-gray-900">
           {localeMonthNames[current.month].long} {current.year}
         </h2>
@@ -150,35 +152,37 @@ export const Calendar: React.FC<CalendarProps> = ({
               className={classNames(
                 !isSelected(day, selectedDays) &&
                   (day.date.getMonth() === current.month
-                    ? "bg-white text-gray-900"
-                    : "bg-gray-50 text-gray-400"),
-                dayIdx === 0 && "rounded-tl-lg",
-                dayIdx === 6 && "rounded-tr-lg",
-                dayIdx === days.length - 7 && "rounded-bl-lg",
-                dayIdx === days.length - 1 && "rounded-br-lg",
-                "relative py-3  focus:z-10",
+                    ? 'bg-white text-gray-900'
+                    : 'bg-gray-50 text-gray-400'),
+                dayIdx === 0 && 'rounded-tl-lg',
+                dayIdx === 6 && 'rounded-tr-lg',
+                dayIdx === days.length - 7 && 'rounded-bl-lg',
+                dayIdx === days.length - 1 && 'rounded-br-lg',
+                'relative py-3  focus:z-10',
                 chooseable(day.date) &&
                   !isSelected(day, selectedDays) &&
-                  "hover:bg-gray-100",
+                  'hover:bg-gray-100',
                 chooseable(day.date) &&
                   isSelected(day, selectedDays) &&
-                  "hover:bg-red-300 bg-red-700 text-white "
-              )}>
+                  'hover:bg-red-300 bg-red-700 text-white '
+              )}
+            >
               <time
-                dateTime={day?.date?.toISOString().split("T")[0]}
+                dateTime={day?.date?.toISOString().split('T')[0]}
                 className={classNames(
                   day.date.getDate() === today.getDate() &&
                     day.date.getMonth() === today.getMonth() &&
                     day.date.getFullYear() === today.getFullYear() &&
-                    "bg-red-700 font-semibold text-white",
-                  "mx-auto flex h-7 w-7 items-center justify-center rounded-full"
-                )}>
+                    'bg-red-700 font-semibold text-white',
+                  'mx-auto flex h-7 w-7 items-center justify-center rounded-full'
+                )}
+              >
                 {day?.date
                   ?.toISOString()
-                  .split("T")[0]
-                  .split?.("-")
+                  .split('T')[0]
+                  .split?.('-')
                   ?.pop?.()
-                  ?.replace?.(/^0/, "")}
+                  ?.replace?.(/^0/, '')}
               </time>
             </button>
           ))}

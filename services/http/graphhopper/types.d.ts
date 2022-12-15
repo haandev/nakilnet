@@ -1,5 +1,4 @@
-declare module 'graphhopper-js-api-client'
-declare module 'lrm-graphhopper'
+
 
 export type Point = { lat: number; lng: number }
 export type GeocodingLocation = Point & {
@@ -12,7 +11,6 @@ export type GeocodingLocation = Point & {
   osm_value: string
   point: Point
   postcode: string
-  state: string
   city: string
   state: string
   street: string
