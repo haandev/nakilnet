@@ -20,7 +20,7 @@ const localeDayNames = getLocalDayNames()
 
 function getLocalMonthNames() {
   let d = new Date(2000, 0) // January
-  let months = []
+  let months:any = []
   for (let i = 0; i < 12; i++) {
     months.push({
       long: d.toLocaleString("default", { month: "long" }),
