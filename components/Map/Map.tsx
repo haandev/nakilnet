@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 import { GeocodingLocation } from '../../services/http/graphhopper/types'
 import { nameConverter } from '../GeocodeInput/GeocodeInput'
@@ -121,7 +121,58 @@ const Map: any = ({ onSuccess }) => {
   }, [])
 
   const price = useMemo(() => calculatePrice(trip), [trip])
+  const nonFinish = useRef<any>(null)
+  const handleNonFinish = useCallback(() => {
+    console.log("i gonna send")
+    const email = `
+    TAMAMLANMAMIŞ <br>
+      İletişime geçen müşterimiz <b>${trip?.contact?.firstName}</b>
+      <b>${nameConverter(
+        trip?.startMarker as GeocodingLocation
+      )}</b> konumundan alacağız ve
+      <b>${nameConverter(
+        trip?.endMarker as GeocodingLocation
+      )}</b> konumuna teslim edeceğiz. <br />
+      ${
+        !Boolean(trip?.helper) &&
+        '<span>Herhangi bir yardımcı personel hizmeti istemedi</span>'
+      }
+      <br />
+      Taşıma için müsait olduğunuz günler
+      <b>
+        ${trip?.selectedDays
+          ?.map((day: { date: Date }) => {
+            return day.date.toLocaleDateString()
+          })
+          ?.join(', ')}
+      </b>
+      . Bu günlerden biri için planlama yapılacaktır.
+      <br />
+      Yolculuğumuz toplam <b>${Math.floor(trip.route.distance / 1000)}km</b>,
+      Talep edeceğimiz ücret ise <b>${calculatePrice(trip)}₺</b>
+      olmaktadır.
+      <br />
+      Yük hakkında verdiği bilgi ise şöyle: <br />
+      <b>${trip.information}</b>
+      <br />
+      Onaylı telefon numarası
+      <a href="tel:${trip?.contact?.phone}">${
+      trip?.contact?.phone
+    }</a> telefonundan ulaşarak rotanızı birlikte
+      onaylayacağız.
 
+      <br />
+      Onaylı eposta numarası
+      <a href="mailto:${trip?.contact?.email}">${trip?.contact?.email}</a> <br/>
+      Detaylı Bilgi <br/>
+<pre>
+      ${JSON.stringify({ ...trip, route: undefined })}</pre>
+      `
+    nonFinish.current = setTimeout(
+      () => axios.post('/api/mail', { email, name: trip.contact?.firstName }),
+      10000
+    )
+  },[trip])
   const steps = useMemo<StepDataType>(
     () => [
       {
@@ -151,18 +202,17 @@ const Map: any = ({ onSuccess }) => {
         continueCondition:
           Number(trip?.contact?.firstName?.length) > 2 &&
           Number(trip?.contact?.phone?.length) > 2,
+        onNext: handleNonFinish,
         children: <Step4Contact trip={trip} onChangeTrip={handleChangeTrip} />,
       },
 
       {
         name: 'Özet',
-
         children: <Step5Summary trip={trip} />,
-
         continueCondition: true,
       },
     ],
-    [handleChangeTrip, trip]
+    [handleChangeTrip, trip, handleNonFinish]
   )
 
   const handleFinish = useEvent(() => {
@@ -209,6 +259,8 @@ const Map: any = ({ onSuccess }) => {
 <pre>
       ${JSON.stringify({ ...trip, route: undefined })}</pre>
       `
+
+    clearTimeout(nonFinish.current)
     axios
       .post('/api/mail', { email, name: trip.contact?.firstName })
       .then(() => {

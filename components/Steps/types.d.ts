@@ -11,6 +11,7 @@ export interface StepsProps {
 export type StepRecordType = {
   name: string
   continueCondition?: boolean
+  onNext?: () => void
   href?: string
   status?: "complete" | "current" | "upcoming"
   children?: ReactNode
