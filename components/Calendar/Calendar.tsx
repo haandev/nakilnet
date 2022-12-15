@@ -6,7 +6,7 @@ import { CalendarProps } from "./types"
 
 function getLocalDayNames() {
   let d = new Date(2000, 0, 3) // Monday
-  let days = []
+  let days:any = []
   for (let i = 0; i < 7; i++) {
     days.push({
       long: d.toLocaleString("default", { weekday: "long" }),
