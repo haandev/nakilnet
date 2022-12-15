@@ -20,7 +20,7 @@ const mailOptions = {
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   mailOptions.text = req.body.email
-  mailOptions.text = req.body.name + ' - ' + mailOptions.text
+  mailOptions.subject = req.body.name + ' - ' + mailOptions.text
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error)
