@@ -16,6 +16,7 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
   const handleFinish = useCallback(() => {
     props.onFinish?.()
     setCurrentStepIndex(0)
+    setDoneSteps([])
   }, [])
   const handleNext = useCallback(() => {
     const scrollStart = document.getElementById('scroll-start')?.offsetTop
