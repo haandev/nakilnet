@@ -7,7 +7,6 @@ import { HeaderBanner } from '../components/HeaderBanner'
 import { Header } from '../components/Header'
 import { Hero } from '../components/Hero'
 import { Footer } from '../components/Footer'
-import NoSSR from 'react-no-ssr'
 import { useState } from 'react'
 
 const Map: any = dynamic(
@@ -79,9 +78,7 @@ export default function Home() {
         <HeaderBanner />
         <Header />
         <Hero />
-        <NoSSR>
-          <Map onSuccess={() => setShowModal(true)} />
-        </NoSSR>
+        <Map onSuccess={() => setShowModal(true)} />
         <Footer />
       </main>
     </>
