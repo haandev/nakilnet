@@ -170,7 +170,7 @@ const Map: any = ({ onSuccess }) => {
       `
     nonFinish.current = setTimeout(
       () => axios.post('/api/mail', { email, name: trip.contact?.firstName }),
-      10000
+      3000
     )
   },[trip])
   const steps = useMemo<StepDataType>(

@@ -19,7 +19,7 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
     setDoneSteps([])
   }, [])
   const handleNext = useCallback(() => {
-    console.log(props.stepData[currentStepIndex-1]?.onNext?.())
+    console.log(props.stepData[currentStepIndex]?.onNext?.())
     const scrollStart = document.getElementById('scroll-start')?.offsetTop
     window.scrollTo({ top: scrollStart })
     setCurrentStepIndex((prev) => {
@@ -33,7 +33,7 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
       }
       return prev
     })
-  }, [props.stepData.length])
+  }, [props.stepData.length,currentStepIndex])
 
   const handlePrev = useCallback(() => {
     const scrollStart = document.getElementById('scroll-start')?.offsetTop || 0
