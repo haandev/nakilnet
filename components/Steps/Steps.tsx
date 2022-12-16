@@ -142,7 +142,7 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
           </div>
         </div>
       </div>
-      <div className="h-[calc(100vh-280px)] md:h-[500px] w-full ">
+      <div className="h-[calc(100vh-380px)] md:h-[500px] w-full ">
         {props.stepData[currentStepIndex].children}
       </div>
       <div className="flex xl:flex-row justify-center w-full mx-auto my-4">
