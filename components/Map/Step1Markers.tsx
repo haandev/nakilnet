@@ -1,11 +1,12 @@
 import React from 'react'
 import GeocodeInput, { nameConverter } from '../GeocodeInput/GeocodeInput'
 import { GeocodingLocation } from '../../services/http/graphhopper/types'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as GraphHopper from '../../services/http/graphhopper/endpoints'
 import L from 'leaflet'
-import 'leaflet/dist/leaflet.css';
+import 'leaflet/dist/leaflet.css'
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import useEvent from 'react-use-event-hook'
 
 let routingLayer: any
 const drawRoute = (path: any, mapRef: any) => {
@@ -39,7 +40,7 @@ const Step1Markers: React.FC<Step1MarkersProps> = ({ onChangeTrip, trip }) => {
   const [mapReady, setMapReady] = useState<boolean>(false)
 
   const mapRef = useRef<any>(null)
-  const putPointer = useCallback(
+  const putPointer = useEvent(
     (
       location: GeocodingLocation,
       stateSetter: React.Dispatch<
@@ -49,8 +50,7 @@ const Step1Markers: React.FC<Step1MarkersProps> = ({ onChangeTrip, trip }) => {
       stateSetter(location)
       focusTrap.current?.focus?.()
       mapRef.current.flyTo([location.point.lat, location.point.lng], 14)
-    },
-    []
+    }
   )
   useEffect(() => {
     if (startMarker && endMarker && mapReady) {
@@ -175,18 +175,17 @@ const Step1Markers: React.FC<Step1MarkersProps> = ({ onChangeTrip, trip }) => {
         className="w-full mx-auto my-4  h-[300px]  md:h-[340px]"
         center={[41.0766019, 29.052495]}
         zoom={13}
+        zoomControl={false}
+        dragging={false}
+        doubleClickZoom={false}
         scrollWheelZoom={false}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {!!startMarker && (
-          <Marker position={[startMarker.point.lat, startMarker.point.lng]}>
-            <Popup>{nameConverter(startMarker)}</Popup>
-          </Marker>
+          <Marker position={[startMarker.point.lat, startMarker.point.lng]} />
         )}
         {!!endMarker && (
-          <Marker position={[endMarker.point.lat, endMarker.point.lng]}>
-            <Popup>{nameConverter(endMarker)}</Popup>
-          </Marker>
+          <Marker position={[endMarker.point.lat, endMarker.point.lng]} />
         )}
       </MapContainer>
     </div>

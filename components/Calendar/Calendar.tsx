@@ -1,6 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import useEvent from 'react-use-event-hook'
 import classNames from '../../utils/classnames'
 import { CalendarProps } from './types'
 
@@ -55,22 +56,22 @@ export const Calendar: React.FC<CalendarProps> = ({
     year: today.getFullYear(),
   })
 
-  const handleNextMonth = useCallback(() => {
+  const handleNextMonth = useEvent(() => {
     setCurrent((prev) => {
       if (prev.month === 11) {
         return { year: prev.year + 1, month: 0 }
       }
       return { year: prev.year, month: prev.month + 1 }
     })
-  }, [])
-  const handlePrevMonth = useCallback(() => {
+  })
+  const handlePrevMonth = useEvent(() => {
     setCurrent((prev) => {
       if (prev.month === 0) {
         return { year: prev.year - 1, month: 11 }
       }
       return { year: prev.year, month: prev.month - 1 }
     })
-  }, [])
+  })
 
   const [days, setDays] = useState<any>([])
   const [selectedDays, setSelectedDays] = useState<any[]>(defaultValue || [])
@@ -89,7 +90,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
     setDays(daysNew)
   }, [current.month, current.year])
-  const handleDayClick = useCallback((day: any) => {
+  const handleDayClick = useEvent((day: any) => {
     setSelectedDays((prev: any) => {
       if (
         prev.find(
@@ -105,7 +106,7 @@ export const Calendar: React.FC<CalendarProps> = ({
         return daysArray
       }
     })
-  }, [])
+  })
   useEffect(() => {
     onChangeSelection(selectedDays)
   }, [onChangeSelection, selectedDays])

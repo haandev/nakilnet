@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import useEvent from 'react-use-event-hook'
 import { GeocodingLocation } from '../../services/http/graphhopper/types'
 import { nameConverter } from '../GeocodeInput/GeocodeInput'
@@ -116,14 +116,13 @@ export const calculatePrice = (trip: any) => {
 const Map: any = ({ onSuccess }) => {
   const [trip, setTrip] = useState<TripType>({ carType: 'large' })
 
-  const handleChangeTrip = useCallback((trip: any) => {
+  const handleChangeTrip = useEvent((trip: any) => {
     setTrip(trip)
-  }, [])
+  })
 
   const price = useMemo(() => calculatePrice(trip), [trip])
   const nonFinish = useRef<any>(null)
-  const handleNonFinish = useCallback(() => {
-    console.log("i gonna send")
+  const handleNonFinish = useEvent(() => {
     const email = `
     TAMAMLANMAMIŞ <br>
       İletişime geçen müşterimiz <b>${trip?.contact?.firstName}</b>
@@ -168,11 +167,12 @@ const Map: any = ({ onSuccess }) => {
 <pre>
       ${JSON.stringify({ ...trip, route: undefined })}</pre>
       `
+
     nonFinish.current = setTimeout(
       () => axios.post('/api/mail', { email, name: trip.contact?.firstName }),
       3000
     )
-  },[trip])
+  })
   const steps = useMemo<StepDataType>(
     () => [
       {

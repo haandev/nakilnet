@@ -20,7 +20,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 const Modal = ({ onClose }) => (
   <div
-    className="relative z-10"
+    className="relative z-[9999]"
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
@@ -69,7 +69,10 @@ export default function Home() {
     <>
       <Head>
         <title>Nakil.net.tr</title>
-        <meta name="description" content="Nakil.net.tr | Nakilnet | nakliyenin kolay hali | hız güven emniyet" />
+        <meta
+          name="description"
+          content="Nakil.net.tr | Nakilnet | nakliyenin kolay hali | hız güven emniyet"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

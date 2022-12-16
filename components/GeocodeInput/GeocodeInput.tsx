@@ -1,10 +1,11 @@
-import { ChangeEvent, Fragment, useCallback, useEffect, useState } from "react"
-import { Combobox, Transition } from "@headlessui/react"
-import { SelectorIcon } from "@heroicons/react/solid"
-import * as GraphHopper from "./../../services/http/graphhopper/endpoints"
-import useDebounce from "../../hooks/useDebounce"
-import { GeocodingLocation } from "../../services/http/graphhopper/types"
-import { GeocodeInputProps } from "./types"
+import { ChangeEvent, Fragment, useEffect, useState } from 'react'
+import { Combobox, Transition } from '@headlessui/react'
+import { SelectorIcon } from '@heroicons/react/solid'
+import * as GraphHopper from './../../services/http/graphhopper/endpoints'
+import useDebounce from '../../hooks/useDebounce'
+import { GeocodingLocation } from '../../services/http/graphhopper/types'
+import { GeocodeInputProps } from './types'
+import useEvent from 'react-use-event-hook'
 
 export const nameConverter = (location: GeocodingLocation): string =>
   [
@@ -18,7 +19,7 @@ export const nameConverter = (location: GeocodingLocation): string =>
     location.countrycode,
   ]
     .filter(Boolean)
-    .join(", ")
+    .join(', ')
 
 const GeocodeInput: React.FC<GeocodeInputProps> = ({
   onSelectLocation,
@@ -28,12 +29,12 @@ const GeocodeInput: React.FC<GeocodeInputProps> = ({
     props.defaultValue
   )
   const [foundLocations, setFoundLocations] = useState<GeocodingLocation[]>([])
-  const [query, setQuery] = useState<string>("")
+  const [query, setQuery] = useState<string>('')
   const debouncedValue = useDebounce<string>(query, 400)
 
-  const handleChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useEvent((event: ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value)
-  }, [])
+  })
 
   useEffect(() => {
     debouncedValue &&
@@ -42,17 +43,14 @@ const GeocodeInput: React.FC<GeocodeInputProps> = ({
       )
   }, [debouncedValue])
 
-  const handleSelect = useCallback(
-    (selection: GeocodingLocation) => {
-      setSelected(selection)
-      onSelectLocation?.(selection)
-    },
-    [onSelectLocation]
-  )
+  const handleSelect = useEvent((selection: GeocodingLocation) => {
+    setSelected(selection)
+    onSelectLocation?.(selection)
+  })
 
   return (
     <div className={props.className}>
-      <Combobox value={selected} onChange={handleSelect}>
+      <Combobox value={selected || ""} onChange={handleSelect}>
         {!!props.label && (
           <Combobox.Label className="block text-sm font-medium text-gray-700">
             {props.label}
@@ -76,9 +74,10 @@ const GeocodeInput: React.FC<GeocodeInputProps> = ({
             leave="transition ease-in duration-100"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            afterLeave={() => setQuery("")}>
+            afterLeave={() => setQuery('')}
+          >
             <Combobox.Options className="absolute z-[9999] mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-              {foundLocations.length === 0 && query !== "" ? (
+              {foundLocations.length === 0 && query !== '' ? (
                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700">
                   Sonuç bulunamadı
                 </div>
@@ -88,23 +87,26 @@ const GeocodeInput: React.FC<GeocodeInputProps> = ({
                     key={location?.osm_id}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-3 pr-4  text-left ${
-                        active ? "bg-red-400 text-white" : "text-gray-900"
+                        active ? 'bg-red-400 text-white' : 'text-gray-900'
                       }`
                     }
-                    value={location}>
+                    value={location}
+                  >
                     {({ selected, active }) => (
                       <>
                         <span
                           className={`block truncate ${
-                            selected ? "font-medium" : "font-normal"
-                          }`}>
+                            selected ? 'font-medium' : 'font-normal'
+                          }`}
+                        >
                           {nameConverter(location)}
                         </span>
                         {selected ? (
                           <span
                             className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                              active ? "text-white" : "text-red-400"
-                            }`}></span>
+                              active ? 'text-white' : 'text-red-400'
+                            }`}
+                          ></span>
                         ) : null}
                       </>
                     )}

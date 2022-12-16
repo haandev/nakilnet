@@ -1,17 +1,15 @@
-import React, { useCallback } from "react"
-import { Calendar } from "../Calendar"
+import React from 'react'
+import useEvent from 'react-use-event-hook'
+import { Calendar } from '../Calendar'
 
 export interface Step1MarkersProps {
   onChangeTrip?: (trip: any) => void
   trip?: any
 }
 const Step2Calendar: React.FC<Step1MarkersProps> = ({ onChangeTrip, trip }) => {
-  const handleChangeSelection = useCallback(
-    (selectedDays: any) => {
-      onChangeTrip?.((prev: any) => ({ ...prev, selectedDays }))
-    },
-    [onChangeTrip]
-  )
+  const handleChangeSelection = useEvent((selectedDays: any) => {
+    onChangeTrip?.((prev: any) => ({ ...prev, selectedDays }))
+  })
   return (
     <div className="max-w-7xl w-full mx-auto h-100 ">
       <p className="text-center mb-2 text-gray-600 text-xs">

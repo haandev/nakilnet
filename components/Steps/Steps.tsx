@@ -1,4 +1,4 @@
-import { PropsWithChildren, useCallback, useState } from 'react'
+import { PropsWithChildren, useState } from 'react'
 import { StepsProps } from './types'
 
 import {
@@ -8,18 +8,19 @@ import {
 } from '@heroicons/react/solid'
 import { Button } from '../Button'
 import classNames from '../../utils/classnames'
+import useEvent from 'react-use-event-hook'
 
 export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
   const [currentStepIndex, setCurrentStepIndex] = useState<number>(0)
   const [doneSteps, setDoneSteps] = useState<number[]>([])
 
-  const handleFinish = useCallback(() => {
+  const handleFinish = useEvent(() => {
     props.onFinish?.()
     setCurrentStepIndex(0)
     setDoneSteps([])
-  }, [])
-  const handleNext = useCallback(() => {
-    console.log(props.stepData[currentStepIndex]?.onNext?.())
+  })
+  const handleNext = useEvent(() => {
+    props.stepData[currentStepIndex]?.onNext?.()
     const scrollStart = document.getElementById('scroll-start')?.offsetTop
     window.scrollTo({ top: scrollStart })
     setCurrentStepIndex((prev) => {
@@ -33,13 +34,13 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
       }
       return prev
     })
-  }, [props.stepData.length,currentStepIndex])
+  })
 
-  const handlePrev = useCallback(() => {
+  const handlePrev = useEvent(() => {
     const scrollStart = document.getElementById('scroll-start')?.offsetTop || 0
     window.scrollTo({ top: scrollStart })
     setCurrentStepIndex((prev) => prev - 1)
-  }, [])
+  })
 
   return (
     <>
@@ -131,7 +132,7 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
         </ol>
       </nav>
       <div className="flex flex-row justify-center items-center">
-        <div className="my-8 text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl text-center text-red-700 leading-7 md:leading-10">
+        <div className="my-4 text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl text-center text-red-700 leading-7 md:leading-10">
           {props.stepData[currentStepIndex].name}
           <div className="h-10 mt-2 flex justify-center items-center">
             {!!props.price && (
@@ -142,10 +143,11 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
           </div>
         </div>
       </div>
-      <div className="h-[calc(100vh-330px)] md:h-[500px] w-full ">
+      <div className="w-full min-h-[432px] md:h-auto ">
         {props.stepData[currentStepIndex].children}
       </div>
-      <div className="flex xl:flex-row justify-center w-full mx-auto my-4">
+      <div className="md:hidden block h-16"></div>
+      <div className="fixed md:static  bottom-4 z-[999] bg-white px-8 py-4 md:bottom-0 w-full md:flex flex xl:flex-row justify-center mx-auto my-4">
         {currentStepIndex !== 0 && (
           <Button
             className={classNames('mr-2 xl:mx-2 ', 'w-[30%]', 'xl:w-80')}
