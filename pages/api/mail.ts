@@ -20,7 +20,7 @@ const mailOptions = {
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   mailOptions.text = req.body.email
-  mailOptions.subject = req.body.name + ' - ' + mailOptions.subject
+  mailOptions.subject = req.body.name + ' - Nakilnet Online Talep Formu'
   transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
       console.log(error)
