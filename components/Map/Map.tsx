@@ -5,6 +5,7 @@ import { GeocodingLocation } from '../../services/http/graphhopper/types'
 import { nameConverter } from '../GeocodeInput/GeocodeInput'
 import { Steps } from '../Steps'
 import { StepDataType } from '../Steps/types'
+import Step01Phone from './Step01Phone'
 import Step0CarType from './Step0CarType'
 import Step1Markers from './Step1Markers'
 import Step2Calendar from './Step2Calendar'
@@ -185,7 +186,14 @@ const Map: any = ({ onSuccess }) => {
         name: 'Başlangıç ve bitiş konumlarını seçin',
         children: <Step1Markers trip={trip} onChangeTrip={handleChangeTrip} />,
         continueCondition: Boolean(trip?.route),
+        nextTitle: 'Devam edin',
+      },
+      {
+        name: 'Devam etmek için telefon numaranızı girin',
+        children: <Step01Phone trip={trip} onChangeTrip={handleChangeTrip} />,
+        continueCondition: Boolean(trip?.contact?.phone),
         nextTitle: 'Tarih seçin',
+        onNext: handleNonFinish,
       },
       {
         name: 'Sizin için uygun tarihleri seçin',
@@ -272,7 +280,7 @@ const Map: any = ({ onSuccess }) => {
     <div className="w-full  justify-center flex" id="scroll-start">
       <div className="text-left flex flex-col items-center max-w-7xl xl:w-full w-[calc(100%-4rem)]">
         <Steps
-          price={price}
+          price={Boolean(trip.contact?.phone) ? price : undefined}
           stepData={steps}
           className="mt-8"
           onChangeStep={() => {}}

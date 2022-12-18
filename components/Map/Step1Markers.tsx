@@ -49,7 +49,8 @@ const Step1Markers: React.FC<Step1MarkersProps> = ({ onChangeTrip, trip }) => {
     ) => {
       stateSetter(location)
       focusTrap.current?.focus?.()
-      mapRef.current.flyTo([location.point.lat, location.point.lng], 14)
+      if (!startMarker || !endMarker)
+        mapRef.current.flyTo([location.point.lat, location.point.lng], 14)
     }
   )
   useEffect(() => {
@@ -179,6 +180,7 @@ const Step1Markers: React.FC<Step1MarkersProps> = ({ onChangeTrip, trip }) => {
         dragging={false}
         doubleClickZoom={false}
         scrollWheelZoom={false}
+        touchZoom={false}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {!!startMarker && (
