@@ -50,7 +50,7 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
             <li
               key={step.name}
               className={classNames(
-                stepIdx !== props.stepData.length - 1 ? 'pr-8 sm:pr-20' : '',
+                stepIdx !== props.stepData.length - 1 ? 'pr-4 md:pr-20' : '',
                 'relative'
               )}
             >
