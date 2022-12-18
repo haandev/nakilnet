@@ -16,7 +16,7 @@ const carLists = [
   },
   {
     id: 'medium',
-    disabled: true,
+    disabled: false,
     title: 'Orta',
     image: 'medium.png',
     description:
