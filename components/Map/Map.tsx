@@ -280,7 +280,7 @@ const Map: any = ({ onSuccess }) => {
     <div className="w-full  justify-center flex" id="scroll-start">
       <div className="text-left flex flex-col items-center max-w-7xl xl:w-full w-[calc(100%-4rem)]">
         <Steps
-          price={Boolean(trip.contact?.phone) ? price : undefined}
+          price={Boolean(trip.contact?.phone) && Boolean(trip.selectedDays) ? price : undefined}
           stepData={steps}
           className="mt-8"
           onChangeStep={() => {}}
