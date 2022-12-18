@@ -49,21 +49,21 @@ export const calculatePrice = (trip: any) => {
       { from: 25, fee: 8 },
       { from: 50, fee: 8 },
       { from: 75, fee: 8 },
-      { from: 100, fee: 10.5 },
+      { from: 100, fee: 11 },
     ],
     medium: [
       { from: 0, fee: 15 },
       { from: 25, fee: 12 },
       { from: 50, fee: 11 },
       { from: 75, fee: 11 },
-      { from: 100, fee: 13.5 },
+      { from: 100, fee: 14 },
     ],
     large: [
       { from: 0, fee: 20 },
       { from: 25, fee: 16 },
       { from: 50, fee: 14 },
       { from: 75, fee: 13 },
-      { from: 100, fee: 15.5 },
+      { from: 100, fee: 16 },
     ],
   }
   const discountDayMatrix = [
