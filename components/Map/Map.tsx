@@ -47,16 +47,16 @@ export const calculatePrice = (trip: any) => {
     small: [
       { from: 0, fee: 18 },
       { from: 25, fee: 14 },
-      { from: 50, fee: 10 },
-      { from: 75, fee: 9 },
-      { from: 100, fee: 8 },
+      { from: 50, fee: 12 },
+      { from: 75, fee: 11 },
+      { from: 100, fee: 10 },
     ],
     medium: [
       { from: 0, fee: 19 },
       { from: 25, fee: 15 },
-      { from: 50, fee: 11 },
-      { from: 75, fee: 10 },
-      { from: 100, fee: 9 },
+      { from: 50, fee: 13 },
+      { from: 75, fee: 12 },
+      { from: 100, fee: 11 },
     ],
     large: [
       { from: 0, fee: 20 },

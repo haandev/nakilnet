@@ -7,11 +7,11 @@ import Image from 'next/image'
 const carLists = [
   {
     id: 'small',
-    disabled: true,
+    disabled: false,
     image: 'small.png',
     title: 'Küçük (Yakında)',
     description:
-      'Fiat Doblo, Ford Connect veya benzer sınıf araçlardan birisi.',
+      'Fiat Doblo, Ford Courier veya benzer sınıf araçlardan birisi.',
     volume: 'Yaklaşık 1m³ - 4m³',
   },
   {
