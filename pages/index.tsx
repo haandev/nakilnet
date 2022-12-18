@@ -8,7 +8,7 @@ import { Header } from '../components/Header'
 import { Hero } from '../components/Hero'
 import { Footer } from '../components/Footer'
 import { useState } from 'react'
-
+import { Analytics } from '@vercel/analytics/react'
 const Map: any = dynamic(
   () => import('../components/Map').then((mod) => mod.Map),
   {
@@ -76,6 +76,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Analytics/>
       <main className={styles.main}>
         {showModal && <Modal onClose={() => setShowModal(false)} />}
         <HeaderBanner />
