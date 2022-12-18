@@ -9,7 +9,7 @@ const carLists = [
     id: 'small',
     disabled: false,
     image: 'small.png',
-    title: 'Küçük (Yakında)',
+    title: 'Küçük',
     description:
       'Fiat Doblo, Ford Courier veya benzer sınıf araçlardan birisi.',
     volume: 'Yaklaşık 1m³ - 4m³',
@@ -17,7 +17,7 @@ const carLists = [
   {
     id: 'medium',
     disabled: true,
-    title: 'Orta (Yakında)',
+    title: 'Orta',
     image: 'medium.png',
     description:
       'Ford Transit, Renault Traffic veya benzer sınıf araçlardan birisi.',
