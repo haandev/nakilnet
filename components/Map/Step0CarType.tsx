@@ -55,7 +55,7 @@ const Step0CarType: React.FC<Step0CarTypeProps> = ({ onChangeTrip, trip }) => {
               className={({ checked, active }) =>
                 classNames(
                   checked ? 'border-transparent' : 'border-gray-300',
-                  active ? 'ring-2 ring-red-700' : '',
+                  active ? 'ring-2 ring-amber-500' : '',
                   'relative bg-white border rounded-lg shadow-sm p-4 flex cursor-pointer focus:outline-none'
                 )
               }
@@ -96,14 +96,14 @@ const Step0CarType: React.FC<Step0CarTypeProps> = ({ onChangeTrip, trip }) => {
                   <CheckCircleIcon
                     className={classNames(
                       !checked ? 'invisible' : '',
-                      'h-5 w-5 text-red-500'
+                      'h-5 w-5 text-amber-500'
                     )}
                     aria-hidden="true"
                   />
                   <div
                     className={classNames(
                       active ? 'border' : 'border-2',
-                      checked ? 'border-red-700' : 'border-transparent',
+                      checked ? 'border-amber-500' : 'border-transparent',
                       'absolute -inset-px rounded-lg pointer-events-none'
                     )}
                     aria-hidden="true"

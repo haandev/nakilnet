@@ -12,7 +12,7 @@ export default function HeaderBanner() {
             </span>
             <p className="ml-3 font-medium text-white truncate">
               <span className="md:hidden">BAYİ OL!</span>
-              <span className="hidden md:inline">nakilnet dağıtım ağını genişletiyor. Talep toplama ve ön başvurular başladı</span>
+              <span className="hidden md:inline">kargonet dağıtım ağını genişletiyor. Talep toplama ve ön başvurular başladı</span>
             </p>
           </div>
           <div className="order-3 mt-2 flex-shrink-0 w-full sm:order-2 sm:mt-0 sm:w-auto">

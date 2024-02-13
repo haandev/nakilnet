@@ -68,10 +68,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Nakil.net.tr</title>
+        <title>kargonet | uluslararas kargo gönderimi ve parsiyel taşımacılık</title>
         <meta
           name="description"
-          content="Nakil.net.tr | Nakilnet | nakliyenin kolay hali | hız güven emniyet"
+          content="kargonet | uluslararas kargo gönderimi ve parsiyel taşımacılık | kargo göndermenin kolay hali | hız güven emniyet"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

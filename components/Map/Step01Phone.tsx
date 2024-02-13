@@ -32,7 +32,7 @@ const Step01Phone: React.FC<Step01PhoneProps> = ({ onChangeTrip, trip }) => {
             value={contact.phone || ""}
             name="phone"
             id="phone"
-            className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:outline-none focus:ring-1 sm:text-sm mt-1 block focus:border-red-500 focus:ring-red-500"
+            className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:outline-none focus:ring-1 sm:text-sm mt-1 block focus:border-amber-500 focus:ring-amber-500"
           />
         </div>
 

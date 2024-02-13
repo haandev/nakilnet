@@ -22,7 +22,7 @@ const Step3Textarea: React.FC<Step3TextareaProps> = ({
           rows={4}
           name="comment"
           id="comment"
-          className="shadow-sm p-3 focus:ring-red-700 focus:border-red-700 h-[200px] block w-full sm:text-sm border-solid border-[1px] border-gray-300 rounded-md"
+          className="shadow-sm p-3 focus:ring-amber-500 focus:border-amber-500 h-[200px] block w-full sm:text-sm border-solid border-[1px] border-gray-300 rounded-md"
           defaultValue={info}
           placeholder="Yükünüz hakkında kısa bir bilgi veriniz. Örneğin: 'Bir palet kağıt' veya '30 koli tekstil ürünü' gibi"
         />

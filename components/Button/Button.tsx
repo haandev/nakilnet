@@ -24,7 +24,7 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = (props) => {
         "text-white",
         props.disabled
           ? "bg-gray-200"
-          : "bg-red-700 hover:bg-red-500 cursor-pointer"
+          : "bg-amber-500 hover:bg-amber-500 cursor-pointer"
       )}>
       {props.children}
     </button>

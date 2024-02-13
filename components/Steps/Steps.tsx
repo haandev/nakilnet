@@ -70,12 +70,12 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
                         'w-full',
                         doneSteps.includes(stepIdx + 1) ||
                           stepIdx + 1 === currentStepIndex
-                          ? 'bg-red-700'
+                          ? 'bg-amber-500'
                           : 'bg-gray-200'
                       )}
                     />
                   </div>
-                  <button className="relative w-8 h-8 flex items-center justify-center bg-red-700 rounded-full hover:bg-red-700">
+                  <button className="relative w-8 h-8 flex items-center justify-center bg-amber-500 rounded-full hover:bg-amber-500">
                     <CheckIcon
                       className="w-5 h-5 text-white"
                       aria-hidden="true"
@@ -94,17 +94,17 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
                         'h-0.5',
                         'w-full',
                         doneSteps.includes(stepIdx + 1)
-                          ? 'bg-red-700'
+                          ? 'bg-amber-500'
                           : 'bg-gray-200'
                       )}
                     />
                   </div>
                   <button
-                    className="relative w-8 h-8 flex items-center justify-center bg-white border-2 border-red-700 rounded-full"
+                    className="relative w-8 h-8 flex items-center justify-center bg-white border-2 border-amber-500 rounded-full"
                     aria-current="step"
                   >
                     <span
-                      className="h-2.5 w-2.5 bg-red-700 rounded-full"
+                      className="h-2.5 w-2.5 bg-amber-500 rounded-full"
                       aria-hidden="true"
                     />
                     <span className="sr-only">{step.name}</span>
@@ -132,7 +132,7 @@ export const Steps: React.FC<PropsWithChildren<StepsProps>> = (props) => {
         </ol>
       </nav>
       <div className="flex flex-row justify-center items-center">
-        <div className="my-4 text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl text-center text-red-700 leading-7 md:leading-10">
+        <div className="my-4 text-xl sm:text-xl md:text-xl lg:text-2xl xl:text-2xl text-center text-amber-500 leading-7 md:leading-10">
           {props.stepData[currentStepIndex].name}
           <div className="h-10 mt-2 flex justify-center items-center">
             {!!props.price && (

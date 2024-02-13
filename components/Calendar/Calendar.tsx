@@ -165,7 +165,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                   'hover:bg-gray-100',
                 chooseable(day.date) &&
                   isSelected(day, selectedDays) &&
-                  'hover:bg-red-300 bg-red-700 text-white '
+                  'hover:bg-amber-300 bg-amber-500 text-white '
               )}
             >
               <time
@@ -174,7 +174,7 @@ export const Calendar: React.FC<CalendarProps> = ({
                   day.date.getDate() === today.getDate() &&
                     day.date.getMonth() === today.getMonth() &&
                     day.date.getFullYear() === today.getFullYear() &&
-                    'bg-red-700 font-semibold text-white',
+                    'bg-amber-500 font-semibold text-white',
                   'mx-auto flex h-7 w-7 items-center justify-center rounded-full'
                 )}
               >

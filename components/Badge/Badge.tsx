@@ -8,12 +8,12 @@ export const Badge: React.FC<PropsWithChildren<BadgeProps>> = (props) => {
       id="badge-dismiss-default"
       className={classNames(
         props.className,
-        "inline-flex items-center py-1 px-2 mr-2 text-sm font-medium text-white bg-red-500 rounded"
+        "inline-flex items-center py-1 px-2 mr-2 text-sm font-medium text-white bg-amber-500 rounded"
       )}>
       {props.children}
       <button
         type="button"
-        className="inline-flex items-center p-0.5 ml-2 text-sm text-white bg-transparent rounded-sm hover:bg-white hover:text-red-500"
+        className="inline-flex items-center p-0.5 ml-2 text-sm text-white bg-transparent rounded-sm hover:bg-white hover:text-amber-500"
         data-dismiss-target="#badge-dismiss-default"
         aria-label="Remove">
         <svg

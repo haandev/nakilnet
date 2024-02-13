@@ -58,7 +58,7 @@ const GeocodeInput: React.FC<GeocodeInputProps> = ({
         )}
         <div className="relative mt-1 ">
           <Combobox.Input
-            className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-red-400 focus:outline-none focus:ring-1 focus:ring-red-400 sm:text-sm"
+            className="w-full rounded-md border border-gray-300 bg-white py-2 pl-3 pr-10 shadow-sm focus:border-amber-400 focus:outline-none focus:ring-1 focus:ring-amber-400 sm:text-sm"
             displayValue={(location: any) => location?.name}
             onChange={handleChange}
             placeholder={props.placeholder}
@@ -87,7 +87,7 @@ const GeocodeInput: React.FC<GeocodeInputProps> = ({
                     key={location?.osm_id}
                     className={({ active }) =>
                       `relative cursor-default select-none py-2 pl-3 pr-4  text-left ${
-                        active ? 'bg-red-400 text-white' : 'text-gray-900'
+                        active ? 'bg-amber-400 text-white' : 'text-gray-900'
                       }`
                     }
                     value={location}
@@ -104,7 +104,7 @@ const GeocodeInput: React.FC<GeocodeInputProps> = ({
                         {selected ? (
                           <span
                             className={`absolute inset-y-0 left-0 flex items-center pl-3 ${
-                              active ? 'text-white' : 'text-red-400'
+                              active ? 'text-white' : 'text-amber-400'
                             }`}
                           ></span>
                         ) : null}
